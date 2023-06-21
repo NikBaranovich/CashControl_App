@@ -16,12 +16,11 @@ class Welcome : AppCompatActivity() {
     }
     fun buttonClick(view:View?)
     {
-        val intent = Intent(this@Welcome, MainActivity::class.java)
-        startActivity(intent)
         // После выполнения действий для первого запуска, установить флаг в false
         val sharedPrefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = sharedPrefs.edit()
         editor.putBoolean(KEY_FIRST_RUN, false)
         editor.apply()
+        finish()
     }
 }

@@ -25,10 +25,6 @@ class MainActivity : AppCompatActivity() {
             // Показать форму или выполнить необходимые действия для первого запуска
             val welcomeIntent = Intent(this@MainActivity, Welcome::class.java)
             startActivity(welcomeIntent)
-            // После выполнения действий для первого запуска, установить флаг в false
-            val editor: SharedPreferences.Editor = sharedPrefs.edit()
-            editor.putBoolean(KEY_FIRST_RUN, false)
-            editor.apply()
         }
         setContentView(R.layout.activity_main)
         val drawerLayout : DrawerLayout = findViewById(R.id.drawerLayout)

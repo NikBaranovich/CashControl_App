@@ -25,7 +25,9 @@
         <activity
             android:name=".Welcome"
             android:exported="false"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait">
+
+        </activity>
     </application>
 
 </manifest>
