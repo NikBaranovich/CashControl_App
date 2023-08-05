@@ -16,7 +16,6 @@ class Welcome : AppCompatActivity() {
     }
     fun buttonClick(view:View?)
     {
-        // После выполнения действий для первого запуска, установить флаг в false
         val sharedPrefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = sharedPrefs.edit()
         editor.putBoolean(KEY_FIRST_RUN, false)

@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.Example2" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">#40352C</item>
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/white</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -14,15 +14,13 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <!-- Dark Theme -->
     <style name="SCREEN">
-        <item name="android:background">#483C32</item>
-        <item name="android:textColor">#E7DED9</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:textColor">@color/dark_gray</item>
     </style>
-
     <style name="BUTTON">
-        <item name="android:background">#000000</item>
-        <item name="android:textColor">#E7DED9</item>
+        <item name="android:background">@color/light_gray</item>
+        <item name="android:textColor">@color/dark_gray</item>
     </style>
 
     <style name="Theme.Example2.NoActionBar">

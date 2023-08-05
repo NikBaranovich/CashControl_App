@@ -2,4 +2,6 @@
     <string name="app_name">Example2</string>
     <string name="open_drawer">Open</string>
     <string name="close_drawer">Close</string>
+    <string name="main_activity_expances_button">Expances</string>
+    <string name="main_activity_income_button">Income</string>
 </resources>

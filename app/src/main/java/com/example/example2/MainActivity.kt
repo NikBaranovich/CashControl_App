@@ -1,17 +1,15 @@
 package com.example.example2
 
 import android.content.Context
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import com.example.example2.databinding.ActivityMainBinding
+import com.example.example2.db.DatabaseManager
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -36,10 +34,16 @@ class MainActivity : AppCompatActivity() {
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
         supportActionBar?.setDisplayShowHomeEnabled(true)
+        val databaseManager = DatabaseManager(this)
+        databaseManager.openDb()
+        databaseManager.insertExpenseCategory("Новая категория", R.drawable.baseline_circle_24)
         navView.setNavigationItemSelectedListener {
             when(it.itemId)
             {
-                R.id.nav_expenses -> Toast.makeText(applicationContext, "Expenses!", Toast.LENGTH_LONG).show()
+                R.id.nav_expenses -> {
+                    val intent = Intent(this, ExpensesCategories::class.java)
+                    startActivity(intent)
+                }
             }
             true
         }
@@ -53,5 +57,12 @@ class MainActivity : AppCompatActivity() {
     fun menuButtonClick(view:View?) {
         val drawerLayout : DrawerLayout = findViewById(R.id.drawerLayout)
         drawerLayout.openDrawer(GravityCompat.START)
+    }
+
+    fun expancesButtonClick(view:View?) {
+        val intent = Intent(this, ExpensesAdd::class.java)
+        startActivity(intent)
+    }
+    fun incomeButtonClick(view:View?) {
     }
 }
