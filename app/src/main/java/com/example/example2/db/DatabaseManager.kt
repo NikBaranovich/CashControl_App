@@ -25,10 +25,11 @@ class DatabaseManager (val context : Context) {
 //        }
 //        val newRowId = db?.insert(ExpensesContract.ExpensesEntry.TABLE_NAME, null, values)
 //    }
-    fun insertExpenseCategory(name: String, imageId: Int) {
+    fun insertExpenseCategory(name: String, imageId: Int, color: Int) {
         val values = ContentValues().apply {
             put(ExpenseCategoriesContract.ExpenseCategoriesEntry.COLUMN_EXPENSE_CATEGORY_NAME, name)
             put(ExpenseCategoriesContract.ExpenseCategoriesEntry.COLUMN_EXPENSE_CATEGORY_IMAGE_ID, imageId)
+            put(ExpenseCategoriesContract.ExpenseCategoriesEntry.COLUMN_EXPENSE_CATEGORY_COLOR, color)
         }
         val newRowId = db?.insert(ExpenseCategoriesContract.ExpenseCategoriesEntry.TABLE_NAME, null, values)
     }
@@ -42,8 +43,8 @@ class DatabaseManager (val context : Context) {
             do {
                 val imageId = cursor.getInt(cursor.getColumnIndexOrThrow(ExpenseCategoriesContract.ExpenseCategoriesEntry.COLUMN_EXPENSE_CATEGORY_IMAGE_ID))
                 val name = cursor.getString(cursor.getColumnIndexOrThrow(ExpenseCategoriesContract.ExpenseCategoriesEntry.COLUMN_EXPENSE_CATEGORY_NAME))
-
-                val expenseCategoryData = ExpenseCategoryData(imageId, name)
+                val color = cursor.getInt(cursor.getColumnIndexOrThrow(ExpenseCategoriesContract.ExpenseCategoriesEntry.COLUMN_EXPENSE_CATEGORY_COLOR))
+                val expenseCategoryData = ExpenseCategoryData(imageId, name, color)
                 expenseCategories.add(expenseCategoryData)
             } while (cursor.moveToNext())
         }
@@ -59,7 +60,8 @@ class DatabaseManager (val context : Context) {
 
         val projection = arrayOf(
             ExpenseCategoriesContract.ExpenseCategoriesEntry.COLUMN_EXPENSE_CATEGORY_IMAGE_ID,
-            ExpenseCategoriesContract.ExpenseCategoriesEntry.COLUMN_EXPENSE_CATEGORY_NAME
+            ExpenseCategoriesContract.ExpenseCategoriesEntry.COLUMN_EXPENSE_CATEGORY_NAME,
+            ExpenseCategoriesContract.ExpenseCategoriesEntry.COLUMN_EXPENSE_CATEGORY_COLOR
         )
 
         val sortOrder = "${ExpenseCategoriesContract.ExpenseCategoriesEntry.COLUMN_EXPENSE_CATEGORY_NAME} ASC"

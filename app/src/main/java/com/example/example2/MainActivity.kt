@@ -34,9 +34,7 @@ class MainActivity : AppCompatActivity() {
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
         supportActionBar?.setDisplayShowHomeEnabled(true)
-        val databaseManager = DatabaseManager(this)
-        databaseManager.openDb()
-        databaseManager.insertExpenseCategory("Новая категория", R.drawable.baseline_circle_24)
+
         navView.setNavigationItemSelectedListener {
             when(it.itemId)
             {

@@ -27,13 +27,15 @@ object ExpenseCategoriesContract: BaseColumns {
         const val TABLE_NAME = "expense_categories"
         const val COLUMN_EXPENSE_CATEGORY_NAME = "expense_category_name"
         const val COLUMN_EXPENSE_CATEGORY_IMAGE_ID = "expense_category_image_id"
+        const val COLUMN_EXPENSE_CATEGORY_COLOR = "expense_category_color"
     }
 
     const val SQL_CREATE_ENTRIES =
         "CREATE TABLE ${ExpenseCategoriesEntry.TABLE_NAME} (" +
                 "${BaseColumns._ID} INTEGER PRIMARY KEY," +
                 "${ExpenseCategoriesEntry.COLUMN_EXPENSE_CATEGORY_IMAGE_ID} INTEGER," +
-                "${ExpenseCategoriesEntry.COLUMN_EXPENSE_CATEGORY_NAME} TEXT)"
+                "${ExpenseCategoriesEntry.COLUMN_EXPENSE_CATEGORY_NAME} TEXT," +
+                "${ExpenseCategoriesEntry.COLUMN_EXPENSE_CATEGORY_COLOR} INTEGER)"
 
     const val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS ${ExpenseCategoriesEntry.TABLE_NAME}"
 

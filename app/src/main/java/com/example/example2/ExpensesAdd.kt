@@ -16,23 +16,26 @@ import com.example.example2.db.DatabaseManager
 import java.util.Date
 
 class ExpensesAdd : AppCompatActivity() {
-    private val expenseCategories = arrayOf(1,2,3,4,5,6,7,8,9,10)
+    private lateinit var expenseCategories: List<ExpenseCategoryData>
     private lateinit var categoryGridLayout: GridLayout
     private lateinit var expenseAmountEditText: EditText
-    private var selectedCategory: Int? = null
+    private var selectedCategory: ExpenseCategoryData? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_expenses_add)
         categoryGridLayout = findViewById<GridLayout>(R.id.gridLayout)
         expenseAmountEditText = findViewById(R.id.expenseAmountEditText)
-        createCategoryButtons();
+        val databaseManager = DatabaseManager(this)
+        databaseManager.openDb()
+        expenseCategories = databaseManager.getAllExpenseCategories()
+        createCategoryButtons()
     }
     private fun createCategoryButtons() {
         categoryGridLayout.columnCount = 4
         for (category in expenseCategories) {
             val button = ImageButton(this)
-            button.setImageResource(R.drawable.baseline_circle_24)
+            button.setImageResource(category.imageId)
             button.setOnClickListener {
                 selectedCategory = category
             }
@@ -45,7 +48,7 @@ class ExpensesAdd : AppCompatActivity() {
             button.layoutParams = buttonLayoutParams
 
             val textView = TextView(this).apply {
-                text = category.toString()
+                text = category.name
                 maxLines = 1
                 isSingleLine = true
 
@@ -82,7 +85,7 @@ class ExpensesAdd : AppCompatActivity() {
             //val databaseManager = DatabaseManager(this)
             //databaseManager.openDb()
             //databaseManager.insertExpense(expenseValue, expenseDate, selectedCategory!!)
-            Toast.makeText(applicationContext, "Сумма: $expenseValue\nДата: $expenseDate", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, "Сумма: $expenseValue\nКатегория: ${selectedCategory!!.name}", Toast.LENGTH_LONG).show()
 
             finish()
         }
