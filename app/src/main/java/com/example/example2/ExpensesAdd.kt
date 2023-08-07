@@ -82,11 +82,11 @@ class ExpensesAdd : AppCompatActivity() {
         val expenseValue = expenseAmountEditText.text.toString().toBigDecimalOrNull()
         val expenseDate = Date()
         if (expenseValue != null && selectedCategory != null) {
-            //val databaseManager = DatabaseManager(this)
-            //databaseManager.openDb()
-            //databaseManager.insertExpense(expenseValue, expenseDate, selectedCategory!!)
+            val databaseManager = DatabaseManager(this)
+            databaseManager.openDb()
+            databaseManager.insertExpense(expenseValue, expenseDate, selectedCategory!!.id!!)
             Toast.makeText(applicationContext, "Сумма: $expenseValue\nКатегория: ${selectedCategory!!.name}", Toast.LENGTH_LONG).show()
-
+            val expenses = databaseManager.getAllExpenses()
             finish()
         }
     }

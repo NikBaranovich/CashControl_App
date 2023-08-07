@@ -1,5 +1,6 @@
 package com.example.example2
 
+import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -12,15 +13,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.example2.databinding.CategoryDisplayItemBinding
 
 
-class ExpenseCategoryAdapter: RecyclerView.Adapter<ExpenseCategoryAdapter.CategoryHolder>() {
+class ExpenseCategoryAdapter( val context: Context): RecyclerView.Adapter<ExpenseCategoryAdapter.CategoryHolder>() {
     val categoryList = ArrayList<ExpenseCategoryData>()
-    class CategoryHolder(item:View):RecyclerView.ViewHolder(item) {
+    inner class CategoryHolder(item:View):RecyclerView.ViewHolder(item) {
         fun bind(category:ExpenseCategoryData)
         {
             val binding = CategoryDisplayItemBinding.bind(itemView)
             binding.categoryImage.setImageResource(category.imageId)
             binding.categoryText.text = category.name
             binding.categoryCardView.setCardBackgroundColor(category.color)
+            binding.categoryCardView.setOnClickListener{
+                Toast.makeText(context, "Category clicked", Toast.LENGTH_LONG).show()
+            }
         }
     }
 
