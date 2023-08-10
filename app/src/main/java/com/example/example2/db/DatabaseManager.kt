@@ -129,4 +129,57 @@ class DatabaseManager (val context : Context) {
 
         return mapCursorToExpenseDataList(cursor)
     }
+
+    fun mapCursorToExpensesByCategoryDataList(cursor: Cursor, categoryId: Int): List<ExpenseData> {
+        val expenses = mutableListOf<ExpenseData>()
+
+        // Перемещаем указатель курсора на первую позицию
+        if (cursor.moveToFirst()) {
+            do {
+                val category = cursor.getInt(cursor.getColumnIndexOrThrow(ExpensesContract.ExpensesEntry.COLUMN_EXPENSE_CATEGORY))
+                if(category == categoryId) {
+                    val id = cursor.getInt(cursor.getColumnIndexOrThrow(BaseColumns._ID))
+                    val value =
+                        cursor.getInt(cursor.getColumnIndexOrThrow(ExpensesContract.ExpensesEntry.COLUMN_EXPENSE_VALUE))
+                    val dateString =
+                        cursor.getString(cursor.getColumnIndexOrThrow(ExpensesContract.ExpensesEntry.COLUMN_EXPENSE_DATE))
+                    val dateFormat =
+                        SimpleDateFormat("yyyy-MM-dd") // Укажите здесь формат даты, который соответствует вашему формату в базе данных
+                    val date: Date = dateFormat.parse(dateString)
+                    val expenseData = ExpenseData(id, value, date, category)
+                    expenses.add(expenseData)
+                }
+            } while (cursor.moveToNext())
+        }
+
+        // Закрываем курсор
+        cursor.close()
+
+        return expenses
+    }
+    fun getExpensesByCategory(categoryId:Int): List<ExpenseData> {
+        val dbHelper = DatabaseHelper(context) // Ваш класс для работы с базой данных
+        val db = dbHelper.readableDatabase
+
+        val projection = arrayOf(
+            BaseColumns._ID,
+            ExpensesContract.ExpensesEntry.COLUMN_EXPENSE_VALUE,
+            ExpensesContract.ExpensesEntry.COLUMN_EXPENSE_DATE,
+            ExpensesContract.ExpensesEntry.COLUMN_EXPENSE_CATEGORY
+        )
+
+        val sortOrder = "${BaseColumns._ID} ASC"
+
+        val cursor = db.query(
+            ExpensesContract.ExpensesEntry.TABLE_NAME,
+            projection,
+            null,
+            null,
+            null,
+            null,
+            sortOrder
+        )
+
+        return mapCursorToExpensesByCategoryDataList(cursor, categoryId)
+    }
 }

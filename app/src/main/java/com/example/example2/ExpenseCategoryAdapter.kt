@@ -23,7 +23,10 @@ class ExpenseCategoryAdapter( val context: Context): RecyclerView.Adapter<Expens
             binding.categoryText.text = category.name
             binding.categoryCardView.setCardBackgroundColor(category.color)
             binding.categoryCardView.setOnClickListener{
-                Toast.makeText(context, "Category clicked", Toast.LENGTH_LONG).show()
+                val context = this.itemView.context
+                val intent = Intent(context, ExpensesByCategory::class.java)
+                intent.putExtra("categoryId", category.id)
+                context.startActivity(intent)
             }
         }
     }
@@ -32,7 +35,7 @@ class ExpenseCategoryAdapter( val context: Context): RecyclerView.Adapter<Expens
         val view = if(viewType == R.layout.category_display_item){
             LayoutInflater.from(parent.context).inflate(R.layout.category_display_item, parent, false)
         } else {
-            LayoutInflater.from(parent.context).inflate(R.layout.category_add_button, parent, false);
+            LayoutInflater.from(parent.context).inflate(R.layout.category_add_button, parent, false)
         }
         return CategoryHolder(view)
     }

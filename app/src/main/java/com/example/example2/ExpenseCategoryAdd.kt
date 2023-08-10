@@ -74,7 +74,7 @@ class ExpenseCategoryAdd : AppCompatActivity() {
         adapter.addCategory(expenseCategories.last())
         finish()
     }
-    public fun openColorPicker()
+    fun openColorPicker()
     {
         var colorPicker = AmbilWarnaDialog(this, mDefaultColor, object : AmbilWarnaDialog.OnAmbilWarnaListener {
             override fun onCancel(dialog: AmbilWarnaDialog?) {
