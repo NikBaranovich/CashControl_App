@@ -18,7 +18,7 @@ class ExpenseCategoryAdd : AppCompatActivity() {
     private lateinit var mColorPreview: View
     private var mDefaultColor = Color.BLACK
     private lateinit var iconButtons: Array<ImageButton>
-    private val adapter = ExpenseCategoryAdapter(this)
+    private val adapter = ExpenseCategoryAdapter()
     private var selectedIcon: Int = R.drawable.baseline_circle_24
 
     override fun onCreate(savedInstanceState: Bundle?) {

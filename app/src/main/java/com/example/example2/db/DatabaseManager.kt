@@ -160,7 +160,6 @@ class DatabaseManager (val context : Context) {
     fun getExpensesByCategory(categoryId:Int): List<ExpenseData> {
         val dbHelper = DatabaseHelper(context) // Ваш класс для работы с базой данных
         val db = dbHelper.readableDatabase
-
         val projection = arrayOf(
             BaseColumns._ID,
             ExpensesContract.ExpensesEntry.COLUMN_EXPENSE_VALUE,

@@ -17,7 +17,7 @@ import com.example.example2.db.DatabaseManager
 
 class ExpensesCategories : AppCompatActivity() {
     lateinit var binding: ActivityExpensesCategoriesBinding
-    private val adapter = ExpenseCategoryAdapter(this)
+    private val adapter = ExpenseCategoryAdapter()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityExpensesCategoriesBinding.inflate(layoutInflater)
@@ -34,5 +34,14 @@ class ExpensesCategories : AppCompatActivity() {
             val expenseCategories = databaseManager.getAllExpenseCategories()
             adapter.updateCategories(expenseCategories)
         }
+    }
+    override fun onResume() {
+        super.onResume()
+
+        // Здесь обновите данные в адаптере
+        val databaseManager = DatabaseManager(this)
+        databaseManager.openDb()
+        val expenseCategories = databaseManager.getAllExpenseCategories()
+        adapter.updateCategories(expenseCategories)
     }
 }

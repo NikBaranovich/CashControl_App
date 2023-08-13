@@ -13,10 +13,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.example2.databinding.CategoryDisplayItemBinding
 
 
-class ExpenseCategoryAdapter( val context: Context): RecyclerView.Adapter<ExpenseCategoryAdapter.CategoryHolder>() {
+class ExpenseCategoryAdapter: RecyclerView.Adapter<ExpenseCategoryAdapter.CategoryHolder>() {
     val categoryList = ArrayList<ExpenseCategoryData>()
     inner class CategoryHolder(item:View):RecyclerView.ViewHolder(item) {
-        fun bind(category:ExpenseCategoryData)
+        fun bindCategory(category:ExpenseCategoryData)
         {
             val binding = CategoryDisplayItemBinding.bind(itemView)
             binding.categoryImage.setImageResource(category.imageId)
@@ -26,6 +26,14 @@ class ExpenseCategoryAdapter( val context: Context): RecyclerView.Adapter<Expens
                 val context = this.itemView.context
                 val intent = Intent(context, ExpensesByCategory::class.java)
                 intent.putExtra("categoryId", category.id)
+                context.startActivity(intent)
+            }
+        }
+        fun bindButton(addButton: Button)
+        {
+            addButton?.setOnClickListener {
+                val context = itemView.context
+                val intent = Intent(context, ExpenseCategoryAdd::class.java)
                 context.startActivity(intent)
             }
         }
@@ -46,13 +54,9 @@ class ExpenseCategoryAdapter( val context: Context): RecyclerView.Adapter<Expens
 
     override fun onBindViewHolder(holder: CategoryHolder, position: Int) {
         if (position == categoryList.size) {
-            holder.itemView.findViewById<Button>(R.id.addButton)?.setOnClickListener {
-                val context = holder.itemView.context
-                val intent = Intent(context, ExpenseCategoryAdd::class.java)
-                context.startActivity(intent)
-            }
+            holder.bindButton(holder.itemView.findViewById<Button>(R.id.addButton))
         } else {
-            holder.bind(categoryList[position])
+            holder.bindCategory(categoryList[position])
         }
 
     }
@@ -64,7 +68,7 @@ class ExpenseCategoryAdapter( val context: Context): RecyclerView.Adapter<Expens
     }
     fun addCategory(newCategory: ExpenseCategoryData) {
         categoryList.add(newCategory)
-        notifyDataSetChanged()
+        notifyItemInserted(categoryList.size-1)
     }
 
     override fun getItemViewType(position: Int): Int {

@@ -9,6 +9,8 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.example2.databinding.ExpenseByCategoryItemBinding
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class ExpensesByCategoryAdapter: RecyclerView.Adapter<ExpensesByCategoryAdapter.ExpensesByCategoryHolder>() {
     val expensesList = ArrayList<ExpenseData>()
@@ -17,7 +19,10 @@ class ExpensesByCategoryAdapter: RecyclerView.Adapter<ExpensesByCategoryAdapter.
         fun bind(expense:ExpenseData)
         {
             val binding = ExpenseByCategoryItemBinding.bind(itemView)
-            binding.itemTextView.text = expense.expenseValue.toString() + " " + expense.category
+            binding.expenseAmountText.text = expense.expenseValue.toString();
+            val expenseDateFormat = SimpleDateFormat("dd MMMM yyyy", Locale("ru")) // Устанавливаем нужный формат и локаль
+            val formattedDate = expenseDateFormat.format(expense.expenseDate)
+            binding.dateText.text = formattedDate
         }
     }
 
