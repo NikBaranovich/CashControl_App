@@ -32,6 +32,7 @@
             android:layout_marginTop="236dp"
             android:layout_marginEnd="149dp"
             android:onClick="expancesButtonClick"
+            android:background="@drawable/bubble_button"
             android:text="@string/main_activity_expances_button"
             style="@style/BUTTON"
             app:layout_constraintEnd_toEndOf="parent"

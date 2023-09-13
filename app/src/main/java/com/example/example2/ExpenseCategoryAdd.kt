@@ -8,6 +8,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.example2.colorpicker.ColorPicker
 import com.example.example2.db.DatabaseManager
 import yuku.ambilwarna.AmbilWarnaDialog
 
@@ -16,6 +17,7 @@ class ExpenseCategoryAdd : AppCompatActivity() {
     private lateinit var mLayout: ConstraintLayout
     private lateinit var mPickColorButton: Button
     private lateinit var mColorPreview: View
+    private lateinit var mColor: ColorPicker
     private var mDefaultColor = Color.BLACK
     private lateinit var iconButtons: Array<ImageButton>
     private val adapter = ExpenseCategoryAdapter()
@@ -26,6 +28,7 @@ class ExpenseCategoryAdd : AppCompatActivity() {
         setContentView(R.layout.activity_expense_category_add)
         mLayout = findViewById(R.id.layout)
         mColorPreview = findViewById(R.id.preview_selected_color)
+        mColor = findViewById(R.id.colorPicker)
         mPickColorButton = findViewById(R.id.show_color_picker_button)
         mPickColorButton.setOnClickListener{
             openColorPicker()
@@ -69,7 +72,7 @@ class ExpenseCategoryAdd : AppCompatActivity() {
         val categoryText: TextView = findViewById(R.id.categoryName)
         val databaseManager = DatabaseManager(this)
         databaseManager.openDb()
-        databaseManager.insertExpenseCategory(categoryText.text.toString(), selectedIcon, mDefaultColor)
+        databaseManager.insertExpenseCategory(categoryText.text.toString(), selectedIcon, mColor.color)
         val expenseCategories = databaseManager.getAllExpenseCategories()
         adapter.addCategory(expenseCategories.last())
         finish()

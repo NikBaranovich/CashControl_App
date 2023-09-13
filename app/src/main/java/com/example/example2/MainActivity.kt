@@ -27,9 +27,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(welcomeIntent)
         }
         setContentView(R.layout.activity_main)
+
         val drawerLayout : DrawerLayout = findViewById(R.id.drawerLayout)
         val navView: NavigationView = findViewById(R.id.nav_view)
-
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open_drawer, R.string.close_drawer)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()

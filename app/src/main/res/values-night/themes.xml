@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Example2" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/light_gray</item>
+        <item name="colorPrimary">@color/light_blue</item>
         <item name="colorPrimaryVariant">@color/white</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
@@ -19,7 +19,7 @@
         <item name="android:textColor">@color/dark_gray</item>
     </style>
     <style name="BUTTON">
-        <item name="android:background">@color/light_gray</item>
-        <item name="android:textColor">@color/dark_gray</item>
+        <item name="android:background">@color/light_blue</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 </resources>
