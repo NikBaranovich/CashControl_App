@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.content.Intent
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         val drawerLayout : DrawerLayout = findViewById(R.id.drawerLayout)
         val navView: NavigationView = findViewById(R.id.nav_view)
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open_drawer, R.string.close_drawer)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()

@@ -12,45 +12,68 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent">
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/primary"
-            android:onClick="menuButtonClick"
-            android:scaleType="fitCenter"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/baseline_menu_24" />
-
         <Button
             android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="168dp"
-            android:layout_marginTop="236dp"
-            android:layout_marginEnd="149dp"
-            android:onClick="expancesButtonClick"
-            android:background="@drawable/bubble_button"
-            android:text="@string/main_activity_expances_button"
             style="@style/BUTTON"
+            android:layout_width="151dp"
+            android:layout_height="47dp"
+            android:layout_marginTop="250dp"
+            android:textStyle="bold"
+            android:background="@drawable/bubble_button_left"
+            android:onClick="expancesButtonClick"
+            android:text="@string/main_activity_expances_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="168dp"
-            android:layout_marginEnd="149dp"
-            android:layout_marginBottom="357dp"
-            android:text="@string/main_activity_income_button"
-            app:layout_constraintBottom_toBottomOf="parent"
             style="@style/BUTTON"
+            android:layout_width="154dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="44dp"
+            android:textStyle="bold"
+            android:background="@drawable/bubble_button_bottom_right"
+            android:text="@string/main_activity_income_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="75dp"
+            android:gravity="center"
+            android:background="@drawable/toolbar_background"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:theme="@style/ToolbarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/imageButton9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="menuButtonClick"
+                android:scaleType="fitCenter"
+                android:scaleX="1.2"
+                android:scaleY="1.5"
+                android:translationX="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/baseline_menu_24_white" />
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Головна"
+                android:textSize="22dp"
+                android:textStyle="bold"
+                android:layout_gravity="center" />
+        </androidx.appcompat.widget.Toolbar>
     </androidx.constraintlayout.widget.ConstraintLayout>
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"

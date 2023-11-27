@@ -2,6 +2,6 @@
     <string name="app_name">CashControl</string>
     <string name="open_drawer">Open</string>
     <string name="close_drawer">Close</string>
-    <string name="main_activity_expances_button">Expences</string>
-    <string name="main_activity_income_button">Income</string>
+    <string name="main_activity_expances_button">Витрати</string>
+    <string name="main_activity_income_button">Прибуток</string>
 </resources>
